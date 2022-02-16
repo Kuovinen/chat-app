@@ -23,9 +23,7 @@ html {
 body {
   background: rgb(124, 71, 216);
   background: rgb(25, 32, 44);
-  display: flex;
-}
-.site {
+
   display: flex;
 }
 .menu {
@@ -128,12 +126,6 @@ h1 {
 .her {
   background: var(--message2);
 }
-
-.mine:hover,
-.her:hover {
-  background: hsl(0, 0%, 100%, 0.05);
-}
-
 .mine > .txt::before,
 .her > .txt::before {
   content: "";
@@ -203,11 +195,6 @@ h1 {
   display: flex;
   align-items: center;
 }
-.chatEnd {
-  height: 1rem;
-  position: relative;
-}
-
 .emoji {
   height: 5vh;
   width: 5vh;
