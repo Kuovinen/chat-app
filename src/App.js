@@ -10,36 +10,54 @@ import ava2 from "./avatar2.jpeg";
 import emoji from "./emoji.svg";
 
 export default function App() {
+  //State controlled elements:
+  let [chat, setChat] = React.useState([]);
+  const [inputTXT, setInputTXT] = React.useState("");
+
   // chatlog message elements based on the database
   // array ommiting deleted messages
   // owner should be chosen by aslias name
-  const history = messageData.map((element) => {
-    if (!element.deleted) {
-      return (
-        <MessageHstr
-          key={element.id}
-          owner={element.owner === "zuro" ? "mine" : "her"}
-          txt={element.txt}
-          id={element.id}
-          hours={element.hours}
-          minutes={element.minutes}
-          date={element.date}
-          month={element.month}
-          year={element.year}
-          edited={element.edited}
-          attachment={element.attachment}
-        />
-      );
-    }
-  });
-
-  //State controlled elements:
-  let [chat, setChat] = React.useState(history);
-  const [inputTXT, setInputTXT] = React.useState("");
+  function updateChatlog(array) {
+    let history = array.map((element) => {
+      if (!element.deleted) {
+        return (
+          <MessageHstr
+            key={element.id}
+            owner={element.owner === "zuro" ? "mine" : "her"}
+            txt={element.txt}
+            id={element.id}
+            hours={element.hours}
+            minutes={element.minutes}
+            date={element.date}
+            month={element.month}
+            year={element.year}
+            edited={element.edited}
+            attachment={element.attachment}
+          />
+        );
+      }
+    });
+    setChat(history);
+  }
+  // call the server and parse the recieved json message data
+  function callApi() {
+    fetch("http://localhost:8080/")
+      .then((res) => res.json())
+      .then((data) => {
+        updateChatlog(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(`Got error while trying to access server data.`);
+        console.log(err);
+      });
+  }
+  //generate chalog upon app start
+  React.useEffect(callApi, []);
 
   function sendMessage(event) {
     event.preventDefault();
-    // if there is text in inputfield (then it's "trufy")
+    // if there is text in input field (then it's "trufy")
     // make a message element with the text value
     inputTXT &&
       setChat((previous) => [
