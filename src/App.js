@@ -77,30 +77,65 @@ export default function App() {
       behavior: "smooth",
     }*/);
   }, [chat]);
-
+  const [typingTxt, setTypingTxt] = React.useState("Alias is ");
+  const [intervalId, setIntervalId] = React.useState(0);
+  {
+    /*TESTING SECTION FOR ANIMATED "TYPING" TEXT*/
+  }
+  function updateTypingTxt() {
+    setTypingTxt((original) => {
+      switch (original.length) {
+        case 9:
+          return original + "t";
+        case 10:
+          return original + "y";
+        case 11:
+          return original + "p";
+        case 12:
+          return original + "i";
+        case 13:
+          return original + "n";
+        case 14:
+          return original + "g";
+        case 15:
+          return "Alias is ";
+      }
+    });
+  }
+  function startTyping() {
+    if (intervalId) {
+      clearInterval(intervalId);
+      setIntervalId(0);
+      return;
+    }
+    const interval = setInterval(updateTypingTxt, 200);
+    setIntervalId(interval);
+  }
+  {
+    /*TESTING SECTION FOR ANIMATED "TYPING" TEXT*/
+  }
   return (
     <div className="site">
+      {/*side menu*/}
       <div className="menu">
         <div className="menuBtn"></div>
         <img id="ava2" src={ava2} alt="ava"></img>
       </div>
-
+      {/*entire chat section*/}
       <div className="talk">
+        {/*TOP SECTION OF CHAT*/}
         <section className="contact">
-          <input
-            className="search"
-            placeholder="search"
-            className="search"
-          ></input>
+          <input className="search" placeholder="search"></input>
           <h1 className="alias">ALIAS</h1>
           <img id="ava" src={ava1} alt="ava"></img>
         </section>
+        {/*CHAT ITSELF*/}
         <div className="dialogue">
           {chat}
           <div className="chatEnd"></div>
           <div className="chatEnd2"></div>
         </div>
-
+        {/*INPUT SECTION*/}
         <section className="input">
           <img className="emoji" src={emoji} alt="emo"></img>
 
@@ -113,6 +148,14 @@ export default function App() {
 
           <div className="send"></div>
         </section>
+        {/*TESTING SECTION FOR ANIMATED "TYPING" TEXT*/}
+        <div>
+          <span style={{ color: "white" }}>{typingTxt}</span>
+          <button onClick={() => startTyping()}>
+            {intervalId ? "Stop" : "Start"}
+          </button>
+        </div>
+        {/*TESTING SECTION FOR ANIMATED "TYPING" TEXT*/}
       </div>
     </div>
   );
