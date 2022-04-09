@@ -181,6 +181,7 @@ h1 {
   height: 1.5vh;
   margin-left: 0.5rem;
   opacity: 0.5;
+  user-select: none;
 }
 .input {
   background: var(--base1);
