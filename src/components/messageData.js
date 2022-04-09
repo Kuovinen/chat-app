@@ -81,7 +81,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "Been playing chess myself...",
+    txt: "Been playing Elden Ring myself...",
   },
   {
     id: "7",
@@ -95,7 +95,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "Hello!",
+    txt: "Ooh! Love that one!",
   },
   {
     id: "8",
@@ -109,7 +109,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "Hi!",
+    txt: "Yeah, it's awesome!",
   },
   {
     id: "9",
@@ -123,7 +123,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "How have you been?",
+    txt: "Have you tried it?",
   },
   {
     id: "10",
@@ -137,7 +137,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "Pretty good!You?",
+    txt: "Nah, not really.",
   },
   {
     id: "11",
@@ -151,7 +151,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "Pretty awesome! So whatcha up to?",
+    txt: "Yeah, you've been busy lately.",
   },
   {
     id: "12",
@@ -165,7 +165,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "Been playing chess myself...",
+    txt: "That's life, I suppose.",
   },
   {
     id: "13",
@@ -179,7 +179,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "Hello!",
+    txt: "Sure",
   },
   {
     id: "14",
@@ -193,7 +193,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "Hi!",
+    txt: "Well, anyway...",
   },
   {
     id: "15",
@@ -207,7 +207,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "How have you been?",
+    txt: "Yeah, anyway XD",
   },
   {
     id: "16",
@@ -221,7 +221,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "Pretty good!You?",
+    txt: "How's stuff going besides that?",
   },
   {
     id: "17",
@@ -235,7 +235,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "Pretty awesome! So whatcha up to?",
+    txt: "I dunno, it's fine I guess",
   },
   {
     id: "18",
@@ -249,7 +249,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "Been playing chess myself...",
+    txt: "More or less",
   },
   {
     id: "19",
@@ -263,7 +263,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "Hello!",
+    txt: "Lovely",
   },
   {
     id: "20",
@@ -333,7 +333,7 @@ export default [
     edited: false,
     attachment: null,
 
-    txt: "Been playing chess myself...",
+    txt: "Yesterday kinda flew by.",
   },
   {
     id: "25",
@@ -347,7 +347,7 @@ export default [
     edited: true,
     attachment: null,
 
-    txt: "Have you tried?",
+    txt: "Super fast.",
   },
   {
     id: "26",
