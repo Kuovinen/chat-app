@@ -11,7 +11,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Hello!",
+    txt: "Hello!"
   },
   {
     id: "2",
@@ -25,7 +25,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Hi!",
+    txt: "Hi!"
   },
   {
     id: "3",
@@ -39,7 +39,7 @@
     edited: false,
     attachment: null,
 
-    txt: "How have you been?",
+    txt: "How have you been?"
   },
   {
     id: "4",
@@ -53,7 +53,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Pretty good!You?",
+    txt: "Pretty good!You?"
   },
   {
     id: "5",
@@ -67,7 +67,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Pretty awesome! So whatcha up to?",
+    txt: "Pretty awesome! So whatcha up to?"
   },
   {
     id: "6",
@@ -81,7 +81,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Been playing chess myself...",
+    txt: "Been playing chess myself..."
   },
   {
     id: "7",
@@ -95,7 +95,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Hello!",
+    txt: "Hello!"
   },
   {
     id: "8",
@@ -109,7 +109,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Hi!",
+    txt: "Hi!"
   },
   {
     id: "9",
@@ -123,7 +123,7 @@
     edited: false,
     attachment: null,
 
-    txt: "How have you been?",
+    txt: "How have you been?"
   },
   {
     id: "10",
@@ -137,7 +137,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Pretty good!You?",
+    txt: "Pretty good!You?"
   },
   {
     id: "11",
@@ -151,7 +151,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Pretty awesome! So whatcha up to?",
+    txt: "Pretty awesome! So whatcha up to?"
   },
   {
     id: "12",
@@ -165,7 +165,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Been playing chess myself...",
+    txt: "Been playing chess myself..."
   },
   {
     id: "13",
@@ -179,7 +179,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Hello!",
+    txt: "Hello!"
   },
   {
     id: "14",
@@ -193,7 +193,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Hi!",
+    txt: "Hi!"
   },
   {
     id: "15",
@@ -207,7 +207,7 @@
     edited: false,
     attachment: null,
 
-    txt: "How have you been?",
+    txt: "How have you been?"
   },
   {
     id: "16",
@@ -221,7 +221,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Pretty good!You?",
+    txt: "Pretty good!You?"
   },
   {
     id: "17",
@@ -235,7 +235,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Pretty awesome! So whatcha up to?",
+    txt: "Pretty awesome! So whatcha up to?"
   },
   {
     id: "18",
@@ -249,7 +249,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Been playing chess myself...",
+    txt: "Been playing chess myself..."
   },
   {
     id: "19",
@@ -263,7 +263,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Hello!",
+    txt: "Hello!"
   },
   {
     id: "20",
@@ -277,7 +277,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Hi!",
+    txt: "Hi!"
   },
   {
     id: "21",
@@ -291,7 +291,7 @@
     edited: false,
     attachment: null,
 
-    txt: "How have you been?",
+    txt: "How have you been?"
   },
   {
     id: "22",
@@ -305,7 +305,7 @@
     edited: true,
     attachment: null,
 
-    txt: "Pretty good!You?",
+    txt: "Pretty good!You?"
   },
   {
     id: "23",
@@ -319,7 +319,7 @@
     edited: true,
     attachment: null,
 
-    txt: "Pretty awesome! So whatcha up to?",
+    txt: "Pretty awesome! So whatcha up to?"
   },
   {
     id: "24",
@@ -333,7 +333,7 @@
     edited: false,
     attachment: null,
 
-    txt: "Been playing chess myself...",
+    txt: "Been playing chess myself..."
   },
   {
     id: "25",
@@ -347,7 +347,7 @@
     edited: true,
     attachment: null,
 
-    txt: "Have you tried?",
+    txt: "Have you tried?"
   },
   {
     id: "26",
@@ -361,6 +361,6 @@
     edited: true,
     attachment: null,
 
-    txt: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil, atque?Lorem ipsum dolor sit amet consectetur adipisicing elit.Magni, nam error soluta aliquam repudiandae dolor. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil, atque?Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, nam error soluta aliquam repudiandae dolor.",
-  },
+    txt: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil, atque?Lorem ipsum dolor sit amet consectetur adipisicing elit.Magni, nam error soluta aliquam repudiandae dolor. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil, atque?Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, nam error soluta aliquam repudiandae dolor."
+  }
 ];
