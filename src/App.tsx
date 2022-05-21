@@ -1,12 +1,12 @@
 import React from "react";
 import messageData from "./components/messageData.js";
-import Message from "./components/Message.js";
-import MessageHstr from "./components/MessageHstr.js";
-import MessageInputField from "./components/MessageInputField.js";
+import Message from "./components/Message";
+import MessageHstr from "./components/MessageHstr";
+import MessageInputField from "./components/MessageInputField";
 import "./App.css";
 import ava1 from "./avatar.jpeg";
 import ava2 from "./avatar2.jpeg";
-import TypingText from "./components/TypingText.js";
+import TypingText from "./components/TypingText";
 import emoji from "./emoji.svg";
 
 export default function App() {
