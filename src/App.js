@@ -3,7 +3,7 @@ import messageData from "./components/messageData.js";
 import Message from "./components/Message.js";
 import MessageHstr from "./components/MessageHstr.js";
 import MessageInputField from "./components/MessageInputField.js";
-import styles from "./App.css";
+import "./App.css";
 import ava1 from "./avatar.jpeg";
 import ava2 from "./avatar2.jpeg";
 import TypingText from "./components/TypingText.js";
