@@ -11,14 +11,14 @@ import emoji from "./emoji.svg";
 
 export default function App() {
   //State controlled elements:
-  let [chat, setChat] = React.useState([]);
+  const [chat, setChat] = React.useState([]);
   const [inputTXT, setInputTXT] = React.useState("");
 
   // chatlog message elements based on the database
   // array ommiting deleted messages
   // owner should be chosen by aslias name
   function updateChatlog(array) {
-    let history = array.map((element) => {
+    const history = array.map((element) => {
       if (!element.deleted) {
         return (
           <MessageHstr

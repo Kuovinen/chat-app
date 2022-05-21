@@ -2,8 +2,8 @@ import React from "react";
 import edit from "../clip.svg";
 
 export default function Message(props) {
-  let [txt, setTxt] = React.useState(props.txt);
-  let [edited, setEdited] = React.useState(props.edit);
+  const [txt, setTxt] = React.useState(props.txt);
+  const [edited, setEdited] = React.useState(props.edit);
   const date = new Date();
   const hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
   const minutes =
