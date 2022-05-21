@@ -1,7 +1,7 @@
 import React from "react";
 export default function TypingText() {
-  const [typingTxt, setTypingTxt] = React.useState("Alias is ");
-  const [intervalId, setIntervalId] = React.useState(0);
+  const [typingTxt, setTypingTxt] = React.useState<string>("Alias is ");
+  const [intervalId, setIntervalId] = React.useState<number>(0);
   function updateTypingTxt() {
     setTypingTxt((original) => {
       switch (original.length) {
@@ -28,7 +28,7 @@ export default function TypingText() {
       setIntervalId(0);
       return;
     }
-    const interval = setInterval(updateTypingTxt, 200);
+    const interval: number = window.setInterval(updateTypingTxt, 200);
     setIntervalId(interval);
   }
   return (

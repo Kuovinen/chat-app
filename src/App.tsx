@@ -3,7 +3,7 @@ import messageData from "./components/messageData.js";
 import Message from "./components/Message.js";
 import MessageHstr from "./components/MessageHstr.js";
 import MessageInputField from "./components/MessageInputField.js";
-import styles from "./App.css";
+import "./App.css";
 import ava1 from "./avatar.jpeg";
 import ava2 from "./avatar2.jpeg";
 import TypingText from "./components/TypingText.js";
@@ -12,13 +12,13 @@ import emoji from "./emoji.svg";
 export default function App() {
   //State controlled elements:
   const [chat, setChat] = React.useState([]);
-  const [inputTXT, setInputTXT] = React.useState("");
+  const [inputTXT, setInputTXT] = React.useState<string>("");
 
   // chatlog message elements based on the database
   // array ommiting deleted messages
   // owner should be chosen by aslias name
   function updateChatlog(array) {
-    const history = array.map((element) => {
+    const history: [] = array.map((element) => {
       if (!element.deleted) {
         return (
           <MessageHstr

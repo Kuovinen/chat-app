@@ -14,7 +14,8 @@ export default function Message(props) {
 
   function click() {
     setEdited(true);
-    document.querySelector(".textInput").focus();
+    const element: HTMLElement = document.querySelector(".textInput");
+    element.focus();
   }
 
   return (
