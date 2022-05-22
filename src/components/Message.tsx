@@ -1,7 +1,14 @@
 import React from "react";
 import edit from "../clip.svg";
 
-export default function Message(props) {
+interface messageProps {
+  key: string;
+  edit: boolean;
+  owner: string;
+  txt: string;
+}
+
+export default function Message(props: messageProps) {
   let [txt, setTxt] = React.useState(props.txt);
   let [edited, setEdited] = React.useState(props.edit);
   const date = new Date();
@@ -14,7 +21,7 @@ export default function Message(props) {
 
   function click() {
     setEdited(true);
-    document.querySelector(".textInput").focus();
+    (document.querySelector(".textInput") as HTMLElement).focus();
   }
 
   return (
