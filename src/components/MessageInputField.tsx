@@ -1,10 +1,17 @@
 import React from "react";
 import clip from "../clip.svg";
 
-export default function Input(props) {
+interface inputProps {
+  sendMessage: (event: any) => void;
+  setChat: React.Dispatch<React.SetStateAction<never[]>>;
+  inputTXT: string;
+  setInputTXT: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function Input(props: inputProps) {
   //set the input text to what the input fields value is
-  function writeText(event) {
-    props.setInputTXT(() => event.target.value);
+  function writeText(event: React.FormEvent<HTMLInputElement>) {
+    props.setInputTXT(() => (event.target as HTMLInputElement).value);
   }
 
   return (

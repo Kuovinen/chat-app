@@ -1,7 +1,21 @@
 import React from "react";
 import edit from "../clip.svg";
 
-export default function MessageHstr(props) {
+interface Props {
+  key: string;
+  owner: string;
+  txt: string;
+  id: string;
+  hours: number;
+  minutes: number;
+  date: number;
+  month: number;
+  year: number;
+  edited: boolean;
+  attachment: null | string;
+}
+
+export default function MessageHstr(props: Props) {
   return (
     <div className={props.owner}>
       <div className="stamp">
