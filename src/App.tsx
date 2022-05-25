@@ -11,7 +11,7 @@ import emoji from "./emoji.svg";
 
 export default function App() {
   //State controlled elements:
-  let [chat, setChat] = React.useState([]);
+  let [chat, setChat] = React.useState<JSX.Element[]>([]);
   const [inputTXT, setInputTXT] = React.useState("");
   interface messageData {
     id: string;
@@ -31,24 +31,23 @@ export default function App() {
   // array ommiting deleted messages
   // owner should be chosen by aslias name
   function updateChatlog(array: messageData[]) {
-    let history = array.map((element) => {
-      if (!element.deleted) {
-        return (
-          <MessageHstr
-            key={element.id}
-            owner={element.owner === "zuro" ? "mine" : "her"}
-            txt={element.txt}
-            id={element.id}
-            hours={element.hours}
-            minutes={element.minutes}
-            date={element.date}
-            month={element.month}
-            year={element.year}
-            edited={element.edited}
-            attachment={element.attachment}
-          />
-        );
-      }
+    const filteredHistory = array.filter((element) => !element.deleted);
+    const history: JSX.Element[] = filteredHistory.map((element) => {
+      return (
+        <MessageHstr
+          key={element.id}
+          owner={element.owner === "zuro" ? "mine" : "her"}
+          txt={element.txt}
+          id={element.id}
+          hours={element.hours}
+          minutes={element.minutes}
+          date={element.date}
+          month={element.month}
+          year={element.year}
+          edited={element.edited}
+          attachment={element.attachment}
+        />
+      );
     });
     setChat(history);
   }
