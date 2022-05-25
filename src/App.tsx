@@ -3,6 +3,7 @@ import messageData from "./components/messageData";
 import Message from "./components/Message";
 import MessageHstr from "./components/MessageHstr";
 import MessageInputField from "./components/MessageInputField";
+import Themes from "./components/Themes";
 import "./App.css";
 import emoji from "./emoji.svg";
 import ava1 from "./avatar.jpeg";
@@ -95,6 +96,7 @@ export default function App() {
       {/*side menu*/}
       <div className="menu">
         <div className="menuBtn"></div>
+        <Themes />
         <img id="ava2" src={ava2} alt="ava"></img>
       </div>
       {/*entire chat section*/}
