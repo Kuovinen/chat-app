@@ -1,0 +1,17 @@
+#themesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.thm {
+  background: red;
+  border: none;
+  outline: 0.5rem solid white;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.thm:hover {
+  transform: scale(0.9);
+}
