@@ -8,7 +8,7 @@
   --indicator2: rgb(0, 153, 255);
   --messageColor: hsl(0, 0%, 100%, var(--textTr));
   --stampColor: hsl(0, 0%, 100%, 0.3);
-  --cp-MainBKG: hsl(279, 28%, 14%); /*  hsl(218, 28%, 14%);   */
+  --cp-MainBKG: hsl(280, 28%, 14%); /*  hsl(218, 28%, 14%);   */
 }
 
 * {

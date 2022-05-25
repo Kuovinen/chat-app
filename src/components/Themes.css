@@ -1,7 +1,18 @@
+#themeBkg {
+  position: absolute;
+  top: 5rem;
+  background: var(--cp-MainBKG);
+}
+
 #themesGrid {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
+  background: var(--base1);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: auto;
 }
 .thm {
   background: red;
