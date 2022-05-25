@@ -8,6 +8,7 @@
   --indicator2: rgb(0, 153, 255);
   --messageColor: hsl(0, 0%, 100%, var(--textTr));
   --stampColor: hsl(0, 0%, 100%, 0.3);
+  --cp-MainBKG: hsl(279, 28%, 14%); /*  hsl(218, 28%, 14%);   */
 }
 
 * {
@@ -21,8 +22,7 @@ html {
   font-size-adjust: none;
 }
 body {
-  background: rgb(124, 71, 216);
-  background: rgb(25, 32, 44);
+  background: var(--cp-MainBKG);
   display: flex;
 }
 .site {
