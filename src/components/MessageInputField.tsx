@@ -3,7 +3,7 @@ import clip from "../clip.svg";
 
 interface inputProps {
   sendMessage: (event: any) => void;
-  setChat: React.Dispatch<React.SetStateAction<never[]>>;
+  setChat: React.Dispatch<React.SetStateAction<JSX.Element[]>>;
   inputTXT: string;
   setInputTXT: React.Dispatch<React.SetStateAction<string>>;
 }

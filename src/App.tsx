@@ -72,10 +72,10 @@ export default function App() {
     // if there is text in input field (then it's "trufy")
     // make a message element with the text value
     inputTXT &&
-      setChat((previous): [] => [
+      setChat((previous): JSX.Element[] => [
         ...previous,
         <Message
-          key={chat.length + 2}
+          key={chat.length + 2 + ""}
           edit={false}
           owner="mine"
           txt={inputTXT}
