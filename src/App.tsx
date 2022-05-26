@@ -52,6 +52,12 @@ export default function App() {
     });
     setChat(history);
   }
+
+  const webSocket = new WebSocket("ws://127.0.0.1:8080");
+  webSocket.onmessage = function (event) {
+    updateChatlog(JSON.parse(event.data));
+  };
+  /*
   // call the server and parse the recieved json message data
   function callApi() {
     fetch("http://localhost:8080/")
@@ -67,7 +73,7 @@ export default function App() {
   }
   //generate chalog upon app start
   React.useEffect(callApi, []);
-
+*/
   function sendMessage(event: Event) {
     event.preventDefault();
     // if there is text in input field (then it's "trufy")
