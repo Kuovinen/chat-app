@@ -4,6 +4,7 @@ export default function Themes() {
   function applyTheme(color: string): void {
     document.documentElement.style.setProperty("--cp-MainBKG", `${color}`);
   }
+  //array that maps out the theme buttons, add more HSL colors for more options
   const arrColors = [
     "hsl(20, 28%, 14%)",
     "hsl(80, 28%, 14%)",
@@ -15,8 +16,9 @@ export default function Themes() {
   return (
     <div id="themeBkg">
       <div id="themesGrid">
-        {arrColors.map((element) => (
+        {arrColors.map((element, index) => (
           <button
+            key={index}
             className="thm"
             onClick={() => {
               applyTheme(`${element}`);
