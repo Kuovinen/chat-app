@@ -1,15 +1,8 @@
-#themeBkg {
-  position: absolute;
-  top: 5rem;
-  background: var(--cp-MainBKG);
-}
-
 #themesGrid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  background: var(--base1);
   padding: 1rem;
   border-radius: 0.5rem;
   margin: auto;
@@ -17,10 +10,10 @@
 .thm {
   background: red;
   border: none;
-  outline: 0.5rem solid white;
+  outline: 0.2rem solid white;
   height: 3rem;
   width: 3rem;
-  border-radius: 50%;
+  border-radius: 1rem;
   cursor: pointer;
 }
 .thm:hover {

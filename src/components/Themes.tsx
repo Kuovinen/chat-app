@@ -14,19 +14,17 @@ export default function Themes() {
     "hsl(280, 28%, 14%)",
   ];
   return (
-    <div id="themeBkg">
-      <div id="themesGrid">
-        {arrColors.map((element, index) => (
-          <button
-            key={index}
-            className="thm"
-            onClick={() => {
-              applyTheme(`${element}`);
-            }}
-            style={{ background: `${element}` }}
-          ></button>
-        ))}
-      </div>
+    <div id="themesGrid">
+      {arrColors.map((element, index) => (
+        <button
+          key={index}
+          className="thm"
+          onClick={() => {
+            applyTheme(`${element}`);
+          }}
+          style={{ background: `${element}` }}
+        ></button>
+      ))}
     </div>
   );
 }
