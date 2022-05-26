@@ -14,6 +14,9 @@ export default function App() {
   //State controlled elements:
   let [chat, setChat] = React.useState<JSX.Element[]>([]);
   const [inputTXT, setInputTXT] = React.useState("");
+  const [webSocket, setWebSocket] = React.useState<undefined | WebSocket>(
+    undefined
+  );
   interface messageData {
     id: string;
     deleted: boolean;
@@ -52,11 +55,45 @@ export default function App() {
     });
     setChat(history);
   }
+  //initial api connection set up with useEffect
+  function callApi() {
+    let webSocket: WebSocket = new WebSocket("ws://127.0.0.1:8080");
+    setWebSocket(webSocket);
+  }
+  React.useEffect(callApi, []);
 
-  const webSocket = new WebSocket("ws://127.0.0.1:8080");
-  webSocket.onmessage = function (event) {
-    updateChatlog(JSON.parse(event.data));
-  };
+  //function to get a new link
+  function getLink() {
+    console.log("clicked get link");
+    console.log(webSocket);
+    if (webSocket) {
+      webSocket.send("get");
+    }
+  }
+  //socket listener for API input
+  function socketListener() {
+    //if websocket is defined
+
+    if (webSocket) {
+      webSocket.onmessage = function (event) {
+        console.log(JSON.parse(event.data));
+        handleWebsocketData(event.data);
+      };
+    } else {
+      console.log("Websocket might be undefined");
+    }
+  }
+  //handle incomming message data or new url data
+  function handleWebsocketData(data: string) {
+    const parsedData = JSON.parse(data);
+    if (parsedData.code) {
+      updateChatlog(parsedData.messages);
+    } else if (parsedData.url) {
+      console.log(parsedData.url);
+    }
+  }
+
+  socketListener();
   /*
   // call the server and parse the recieved json message data
   function callApi() {
@@ -70,10 +107,9 @@ export default function App() {
         console.log(`Got error while trying to access server data.`);
         console.log(err);
       });
-  }
+  }*/
   //generate chalog upon app start
-  React.useEffect(callApi, []);
-*/
+
   function sendMessage(event: Event) {
     event.preventDefault();
     // if there is text in input field (then it's "trufy")
@@ -101,7 +137,9 @@ export default function App() {
     <div className="site">
       {/*side menu*/}
       <div className="menu">
-        <div className="menuBtn"></div>
+        <button className="menuBtn" onClick={getLink}>
+          LINK
+        </button>
         <Themes />
         <img id="ava2" src={ava2} alt="ava"></img>
       </div>
