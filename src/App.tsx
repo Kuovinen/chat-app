@@ -1,6 +1,5 @@
 import React from "react";
-import messageData from "./components/messageData";
-import Message from "./components/Message";
+
 import MessageHstr from "./components/MessageHstr";
 import MessageInputField from "./components/MessageInputField";
 import Themes from "./components/Themes";
@@ -10,12 +9,15 @@ import "./App.css";
 import emoji from "./emoji.svg";
 
 export default function App() {
+  console.log("REDERED APP");
   //State controlled elements:
   let [chat, setChat] = React.useState<JSX.Element[]>([]);
-  const [inputTXT, setInputTXT] = React.useState("");
+  let [chatCode, setChatCode] = React.useState<string>("");
+
   const [webSocket, setWebSocket] = React.useState<undefined | WebSocket>(
     undefined
   );
+  const [conStatus, setConStatus] = React.useState<number>(3);
   interface messageData {
     id: string;
     deleted: boolean;
@@ -59,19 +61,48 @@ export default function App() {
     let webSocket: WebSocket = new WebSocket("ws://127.0.0.1:8080");
     setWebSocket(webSocket);
   }
-  //initial api connection set up with useEffect
+  //connect to api when program webpage opend
   React.useEffect(callApi, []);
-
-  //function to get a new link
-  function getLink() {
-    console.log("clicked get link");
-    console.log(webSocket);
+  //if code changes automatically send updateChat request to api
+  React.useEffect(getChatLog, [chatCode]);
+  //update connection status
+  function updateConnection() {
     if (webSocket) {
-      webSocket.send("get");
+      setConStatus(webSocket.readyState);
     }
   }
+
+  React.useEffect(updateConnection, []);
+
+  function getChatCode() {
+    console.log("clicked get code button");
+    if (webSocket) {
+      webSocket.send(JSON.stringify({ action: "getCode", payload: "test1" }));
+    }
+  }
+  function getChatLog() {
+    if (webSocket) {
+      webSocket.send(JSON.stringify({ action: "getChat", payload: "test1" }));
+    }
+  }
+
   //socket listener for API input
   function socketListener() {
+    //handle incomming message data or new url data - used in socketListener()
+    function handleWebsocketData(data: string) {
+      const parsedData = JSON.parse(data);
+      //objects that have CODE are chatlogs, with code identifying the instance
+      if (parsedData.action === "code") {
+        setChatCode(parsedData.payload);
+        console.log("API sent CODE");
+      }
+      //objects that have URL are chatlog instance identifiers used for connecting
+      else if (parsedData.action === "update") {
+        updateChatlog(parsedData.messages);
+        console.log("api sent UPDATE");
+      }
+    }
+
     //if websocket is defined
     if (webSocket) {
       //handle the possible incomming data
@@ -83,37 +114,10 @@ export default function App() {
       console.log("Websocket might be undefined");
     }
   }
-  //handle incomming message data or new url data - used in socketListener()
-  function handleWebsocketData(data: string) {
-    const parsedData = JSON.parse(data);
-    //objects that have CODE are chatlogs, with code identifying the instance
-    if (parsedData.code) {
-      updateChatlog(parsedData.messages);
-    }
-    //objects that have URL are chatlog instance identifiers used for connecting
-    else if (parsedData.url) {
-      console.log(parsedData.url);
-    }
-  }
+
   //this handles the webSocket messages
   socketListener();
 
-  function sendMessage(event: Event) {
-    event.preventDefault();
-    // if there is text in input field (then it's "trufy")
-    // make a message element with the text value
-    inputTXT &&
-      setChat((previous): JSX.Element[] => [
-        ...previous,
-        <Message
-          key={chat.length + 2 + ""}
-          edit={false}
-          owner="mine"
-          txt={inputTXT}
-        />,
-      ]);
-    setInputTXT("");
-  }
   //Scroll down chat window as new messages pop in
   React.useEffect(() => {
     (document.querySelector(".chatEnd2") as HTMLElement).scrollIntoView(/*{
@@ -124,7 +128,7 @@ export default function App() {
   return (
     <div className="site">
       <div className="menu">
-        <button className="menuBtn" onClick={getLink}>
+        <button className="menuBtn" onClick={getChatCode}>
           LINK
         </button>
         <Themes />
@@ -133,7 +137,7 @@ export default function App() {
       <div className="talk">
         {/*TOP SECTION OF CHAT*/}
         <section className="contact">
-          <Connection />
+          <Connection chatCode={chatCode} webSocket={webSocket} />
           <User2Status />
         </section>
         {/*CHAT ITSELF*/}
@@ -146,12 +150,7 @@ export default function App() {
         <section className="input">
           <img className="emoji" src={emoji} alt="emo"></img>
 
-          <MessageInputField
-            sendMessage={sendMessage}
-            setChat={setChat}
-            inputTXT={inputTXT}
-            setInputTXT={setInputTXT}
-          />
+          <MessageInputField setChat={setChat} chat={chat} />
         </section>
       </div>
     </div>
