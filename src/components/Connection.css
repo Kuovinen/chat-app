@@ -27,6 +27,7 @@
 #chatCode {
   flex: 1;
   height: 1.5rem;
+  width: 25rem;
   padding: 0.5rem;
   background: hsl(0, 0%, 0%, 0.5);
   border: none;
