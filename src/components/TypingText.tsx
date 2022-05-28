@@ -1,31 +1,31 @@
 import React from "react";
 export default function TypingText() {
-  const [typingTxt, setTypingTxt] = React.useState<string>("Alias is ");
+  const [typingTxt, setTypingTxt] = React.useState<string>("is ");
   const [intervalId, setIntervalId] = React.useState<number>(0);
   function updateTypingTxt() {
     setTypingTxt((original): string => {
       let newText: string;
       switch (original.length) {
-        case 9:
+        case 3:
           newText = original + "t";
           break;
-        case 10:
+        case 4:
           newText = original + "y";
           break;
-        case 11:
+        case 5:
           newText = original + "p";
           break;
-        case 12:
+        case 6:
           newText = original + "i";
           break;
-        case 13:
+        case 7:
           newText = original + "n";
           break;
-        case 14:
+        case 8:
           newText = original + "g";
           break;
-        case 15:
-          newText = "Alias is ";
+        case 9:
+          newText = "is ";
           break;
         default:
           newText = "something went wrong";
@@ -45,7 +45,11 @@ export default function TypingText() {
   }
   return (
     <div>
-      <span style={{ color: "white" }}>{typingTxt}</span>
+      <span
+        style={{ color: "white", fontSize: "1.25rem", marginLeft: "3.5rem" }}
+      >
+        {typingTxt}
+      </span>
       <button
         onClick={() => startTyping()}
         style={{ background: "none", border: "none", cursor: "pointer" }}

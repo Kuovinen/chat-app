@@ -123,7 +123,6 @@ export default function App() {
 
   return (
     <div className="site">
-      {/*side menu*/}
       <div className="menu">
         <button className="menuBtn" onClick={getLink}>
           LINK
@@ -153,8 +152,6 @@ export default function App() {
             inputTXT={inputTXT}
             setInputTXT={setInputTXT}
           />
-
-          <div className="send"></div>
         </section>
       </div>
     </div>

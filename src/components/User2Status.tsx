@@ -6,7 +6,7 @@ export default function User2Status() {
     <div className="div">
       <div className="user2Data">
         <span id="user2status"></span>
-        <h1 className="alias">ALIAS</h1>
+        <h1 className="alias">Contact</h1>
       </div>
       <TypingText />
     </div>
