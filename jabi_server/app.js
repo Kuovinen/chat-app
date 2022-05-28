@@ -2,21 +2,30 @@ const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 8080 });
 const fs = require("fs");
 const path = require("path");
+const { v4: uuidv4 } = require("uuid");
 
-const data = fs.readFileSync(path.resolve(__dirname, "./messageData.json"));
-const parsedData = JSON.parse(data);
-console.log(parsedData[0]);
-
+//console.log(parsedData[0]);
+console.log(uuidv4());
 wss.on("connection", function (ws) {
   console.log("new client connected");
   //send a message back at client
-  ws.send(JSON.stringify(parsedData[0]));
+
   //check if recieved message containt a 'get' link command and give one if so
   ws.on("message", function (message) {
-    console.log("Recieved", message.toString());
-    if (message.toString() === "get") {
-      console.log("received: %s", message);
-      ws.send(JSON.stringify({ url: "this is the future URL" }));
+    const formattedMessage = JSON.parse(message.toString());
+    console.log(formattedMessage);
+    if (formattedMessage.action === "getCode") {
+      console.log("received: GETCODE", formattedMessage);
+      ws.send(JSON.stringify({ action: "code", payload: uuidv4() }));
+    }
+    if (formattedMessage === "getChat") {
+      //get data from chatlog file
+      const data = fs.readFileSync(
+        path.resolve(__dirname, "./messageData.json")
+      );
+      const parsedData = JSON.parse(data);
+      console.log("received: UPDATECHAT", formattedMessage);
+      ws.send(JSON.stringify({ action: "update", payload: parsedData[0] }));
     }
   });
 });
