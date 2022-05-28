@@ -1,25 +1,42 @@
 import React from "react";
 import "./MessageInputField.css";
 import clip from "../clip.svg";
-
+import Message from "./Message";
 interface inputProps {
-  sendMessage: (event: any) => void;
   setChat: React.Dispatch<React.SetStateAction<JSX.Element[]>>;
-  inputTXT: string;
-  setInputTXT: React.Dispatch<React.SetStateAction<string>>;
+  chat: JSX.Element[];
 }
 
 export default function Input(props: inputProps) {
+  console.log("RENDERED INPUT");
+  const [inputTXT, setInputTXT] = React.useState<string>("");
   //set the input text to what the input fields value is
   function writeText(event: React.FormEvent<HTMLInputElement>) {
-    props.setInputTXT(() => (event.target as HTMLInputElement).value);
+    setInputTXT(() => (event.target as HTMLInputElement).value);
+  }
+
+  function sendMessage(event: React.FormEvent) {
+    event.preventDefault();
+    // if there is text in input field (then it's "trufy")
+    // make a message element with the text value
+    inputTXT &&
+      props.setChat((previous): JSX.Element[] => [
+        ...previous,
+        <Message
+          key={props.chat.length + 2 + ""}
+          edit={false}
+          owner="user1"
+          txt={inputTXT}
+        />,
+      ]);
+    setInputTXT("");
   }
 
   return (
-    <form onSubmit={props.sendMessage} className="message">
+    <form onSubmit={sendMessage} className="message">
       <input
         type="text"
-        value={props.inputTXT}
+        value={inputTXT}
         placeholder="Message"
         className="textInput"
         onChange={writeText}
