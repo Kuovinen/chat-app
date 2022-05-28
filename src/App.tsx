@@ -4,11 +4,10 @@ import Message from "./components/Message";
 import MessageHstr from "./components/MessageHstr";
 import MessageInputField from "./components/MessageInputField";
 import Themes from "./components/Themes";
+import Connection from "./components/Connection";
+import User2Status from "./components/User2Status";
 import "./App.css";
 import emoji from "./emoji.svg";
-import ava1 from "./avatar.jpeg";
-import ava2 from "./avatar2.jpeg";
-import TypingText from "./components/TypingText";
 
 export default function App() {
   //State controlled elements:
@@ -40,7 +39,7 @@ export default function App() {
       return (
         <MessageHstr
           key={element.id}
-          owner={element.owner === "zuro" ? "mine" : "her"}
+          owner={element.owner === "user1" ? "user1" : "user2"}
           txt={element.txt}
           id={element.id}
           hours={element.hours}
@@ -60,6 +59,7 @@ export default function App() {
     let webSocket: WebSocket = new WebSocket("ws://127.0.0.1:8080");
     setWebSocket(webSocket);
   }
+  //initial api connection set up with useEffect
   React.useEffect(callApi, []);
 
   //function to get a new link
@@ -73,8 +73,8 @@ export default function App() {
   //socket listener for API input
   function socketListener() {
     //if websocket is defined
-
     if (webSocket) {
+      //handle the possible incomming data
       webSocket.onmessage = function (event) {
         console.log(JSON.parse(event.data));
         handleWebsocketData(event.data);
@@ -83,32 +83,20 @@ export default function App() {
       console.log("Websocket might be undefined");
     }
   }
-  //handle incomming message data or new url data
+  //handle incomming message data or new url data - used in socketListener()
   function handleWebsocketData(data: string) {
     const parsedData = JSON.parse(data);
+    //objects that have CODE are chatlogs, with code identifying the instance
     if (parsedData.code) {
       updateChatlog(parsedData.messages);
-    } else if (parsedData.url) {
+    }
+    //objects that have URL are chatlog instance identifiers used for connecting
+    else if (parsedData.url) {
       console.log(parsedData.url);
     }
   }
-
+  //this handles the webSocket messages
   socketListener();
-  /*
-  // call the server and parse the recieved json message data
-  function callApi() {
-    fetch("http://localhost:8080/")
-      .then((res) => res.json())
-      .then((data) => {
-        updateChatlog(data);
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(`Got error while trying to access server data.`);
-        console.log(err);
-      });
-  }*/
-  //generate chalog upon app start
 
   function sendMessage(event: Event) {
     event.preventDefault();
@@ -141,15 +129,13 @@ export default function App() {
           LINK
         </button>
         <Themes />
-        <img id="ava2" src={ava2} alt="ava"></img>
       </div>
       {/*entire chat section*/}
       <div className="talk">
         {/*TOP SECTION OF CHAT*/}
         <section className="contact">
-          <input className="search" placeholder="search"></input>
-          <h1 className="alias">ALIAS</h1>
-          <img id="ava" src={ava1} alt="ava"></img>
+          <Connection />
+          <User2Status />
         </section>
         {/*CHAT ITSELF*/}
         <div className="dialogue">
@@ -170,7 +156,6 @@ export default function App() {
 
           <div className="send"></div>
         </section>
-        <TypingText />
       </div>
     </div>
   );

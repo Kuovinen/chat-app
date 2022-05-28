@@ -1,0 +1,61 @@
+.connectionContainer {
+  display: "flex";
+  flex-direction: column;
+  margin-left: 2rem;
+  justify-content: center;
+}
+
+#statusContainer {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+#conLable {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+#connectionStatusDot {
+  display: inline-block;
+  background: var(--cp-MainBKG);
+  margin-right: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+}
+
+#chatCode {
+  flex: 1;
+  height: 1.5rem;
+  padding: 0.5rem;
+  background: hsl(0, 0%, 0%, 0.5);
+  border: none;
+  border-radius: 0.2rem;
+  font-size: 1.25rem;
+  color: white;
+}
+#chatCode:focus {
+  outline: none;
+}
+.search:focus {
+  outline: none;
+  color: white;
+}
+
+#connectionBTN {
+  height: 2.5rem;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  background: hsl(0, 0%, 100%, 0.1);
+  border-radius: 0.3rem;
+  color: var(--stampColor);
+  border: none;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+#connectionBTN:hover {
+  background: var(--btnColor);
+}
+#connectionBTN:active {
+  transform: scale(0.9);
+}

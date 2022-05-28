@@ -1,0 +1,13 @@
+.user2Data {
+  display: flex;
+  align-items: center;
+}
+#user2status {
+  display: inline-block;
+  margin-right: 1rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  background: var(--cp-MainBKG);
+  border: 0.2rem solid white;
+}

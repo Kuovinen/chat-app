@@ -1,4 +1,5 @@
 import React from "react";
+import "./MessageInputField.css";
 import clip from "../clip.svg";
 
 interface inputProps {
@@ -24,7 +25,7 @@ export default function Input(props: inputProps) {
         onChange={writeText}
       ></input>
       <button className="sendMsg">SEND</button>
-      <img className="file" src={clip} alt="f" />
+      {/* <img className="file" src={clip} alt="f" />*/}
     </form>
   );
 }

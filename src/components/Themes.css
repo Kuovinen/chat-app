@@ -10,7 +10,7 @@
 .thm {
   background: red;
   border: none;
-  outline: 0.2rem solid white;
+  outline: 0.1rem solid var(--btnColor);
   height: 3rem;
   width: 3rem;
   border-radius: 1rem;

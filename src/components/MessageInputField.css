@@ -1,0 +1,22 @@
+.message {
+  width: 95%;
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+.textInput {
+  height: 5vh;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  flex: 40;
+}
+::placeholder {
+  color: var(--stampColor);
+}
+.textInput:focus {
+  outline: none;
+  color: white;
+}

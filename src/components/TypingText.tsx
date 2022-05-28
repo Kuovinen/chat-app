@@ -46,7 +46,10 @@ export default function TypingText() {
   return (
     <div>
       <span style={{ color: "white" }}>{typingTxt}</span>
-      <button onClick={() => startTyping()}>
+      <button
+        onClick={() => startTyping()}
+        style={{ background: "none", border: "none", cursor: "pointer" }}
+      >
         {intervalId ? "Stop" : "Start"}
       </button>
     </div>
