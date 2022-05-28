@@ -1,8 +1,8 @@
-export default [
+const data = [
   {
     id: "1",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -16,7 +16,7 @@ export default [
   {
     id: "2",
     deleted: false,
-    owner: "her",
+    owner: "user2",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -30,7 +30,7 @@ export default [
   {
     id: "3",
     deleted: true,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -44,7 +44,7 @@ export default [
   {
     id: "4",
     deleted: false,
-    owner: "her",
+    owner: "user2",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -58,7 +58,7 @@ export default [
   {
     id: "5",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -72,7 +72,7 @@ export default [
   {
     id: "6",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -86,7 +86,7 @@ export default [
   {
     id: "7",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -100,7 +100,7 @@ export default [
   {
     id: "8",
     deleted: false,
-    owner: "her",
+    owner: "user2",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -114,7 +114,7 @@ export default [
   {
     id: "9",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -128,7 +128,7 @@ export default [
   {
     id: "10",
     deleted: false,
-    owner: "her",
+    owner: "user2",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -142,7 +142,7 @@ export default [
   {
     id: "11",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -156,7 +156,7 @@ export default [
   {
     id: "12",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -170,7 +170,7 @@ export default [
   {
     id: "13",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -184,7 +184,7 @@ export default [
   {
     id: "14",
     deleted: false,
-    owner: "her",
+    owner: "user2",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -198,7 +198,7 @@ export default [
   {
     id: "15",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -212,7 +212,7 @@ export default [
   {
     id: "16",
     deleted: false,
-    owner: "her",
+    owner: "user2",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -226,7 +226,7 @@ export default [
   {
     id: "17",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -240,7 +240,7 @@ export default [
   {
     id: "18",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -254,7 +254,7 @@ export default [
   {
     id: "19",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -268,7 +268,7 @@ export default [
   {
     id: "20",
     deleted: false,
-    owner: "her",
+    owner: "user2",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -282,7 +282,7 @@ export default [
   {
     id: "21",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -296,7 +296,7 @@ export default [
   {
     id: "22",
     deleted: false,
-    owner: "her",
+    owner: "user2",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -310,7 +310,7 @@ export default [
   {
     id: "23",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -324,7 +324,7 @@ export default [
   {
     id: "24",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -338,7 +338,7 @@ export default [
   {
     id: "25",
     deleted: false,
-    owner: "zuro",
+    owner: "user1",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -352,7 +352,7 @@ export default [
   {
     id: "26",
     deleted: false,
-    owner: "her",
+    owner: "user2",
     hours: 12,
     minutes: 12,
     date: 12,
@@ -364,3 +364,4 @@ export default [
     txt: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil, atque?Lorem ipsum dolor sit amet consectetur adipisicing elit.Magni, nam error soluta aliquam repudiandae dolor. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil, atque?Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, nam error soluta aliquam repudiandae dolor.",
   },
 ];
+export default data;
