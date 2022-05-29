@@ -94,7 +94,10 @@ export default function App() {
       webSocket.send(
         JSON.stringify({
           action: "addMessage",
-          payload: JSON.stringify(lastMessageObject),
+          payload: JSON.stringify({
+            code: chatCode,
+            message: lastMessageObject,
+          }),
         })
       );
     }
