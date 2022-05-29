@@ -8,30 +8,46 @@ import User2Status from "./components/User2Status";
 import "./App.css";
 import emoji from "./emoji.svg";
 
+interface MessageObject {
+  id: string;
+  deleted: boolean;
+  owner: string;
+  hours: number;
+  minutes: string;
+  date: string;
+  month: string;
+  year: string;
+  edited: boolean;
+  attachment: null;
+  txt: string;
+}
+interface messageData {
+  id: string;
+  deleted: boolean;
+  owner: string;
+  hours: number;
+  minutes: number;
+  date: number;
+  month: number;
+  year: number;
+  edited: boolean;
+  attachment: null | string;
+
+  txt: string;
+}
 export default function App() {
   console.log("REDERED APP");
   //State controlled elements:
-  let [chat, setChat] = React.useState<JSX.Element[]>([]);
-  let [chatCode, setChatCode] = React.useState<string>("");
-
+  const [chat, setChat] = React.useState<JSX.Element[]>([]);
+  const [chatCode, setChatCode] = React.useState<string>("");
+  const [lastMessageObject, setLastMessageObject] = React.useState<
+    MessageObject | {}
+  >({});
   const [webSocket, setWebSocket] = React.useState<undefined | WebSocket>(
     undefined
   );
   const [conStatus, setConStatus] = React.useState<number>(3);
-  interface messageData {
-    id: string;
-    deleted: boolean;
-    owner: string;
-    hours: number;
-    minutes: number;
-    date: number;
-    month: number;
-    year: number;
-    edited: boolean;
-    attachment: null | string;
 
-    txt: string;
-  }
   // chatlog message elements based on the database
   // array ommiting deleted messages
   // owner should be chosen by aslias name
@@ -56,6 +72,7 @@ export default function App() {
     });
     setChat(history);
   }
+  console.log(lastMessageObject);
   //initial api connection set up with useEffect
   function callApi() {
     let webSocket: WebSocket = new WebSocket("ws://127.0.0.1:8080");
@@ -150,7 +167,11 @@ export default function App() {
         <section className="input">
           <img className="emoji" src={emoji} alt="emo"></img>
 
-          <MessageInputField setChat={setChat} chat={chat} />
+          <MessageInputField
+            setChat={setChat}
+            chat={chat}
+            setLastMessageObject={setLastMessageObject}
+          />
         </section>
       </div>
     </div>
