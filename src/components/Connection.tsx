@@ -29,6 +29,7 @@ export default function Connection(props: Props) {
     }
     return style;
   }
+  //interval that checks connection status every 3 seconds
   let intervalID: NodeJS.Timeout;
   React.useEffect(() => {
     if (tik) {
@@ -38,8 +39,17 @@ export default function Connection(props: Props) {
     }
     return () => clearInterval(intervalID);
   }, []);
+
+  function connect(): void {
+    if (props.webSocket) {
+      props.webSocket.send(
+        JSON.stringify({ action: "getChatUpdate", payload: props.chatCode })
+      );
+    }
+  }
+
   return (
-    <form className="connectionContainer">
+    <form className="connectionContainer" onSubmit={(e) => e.preventDefault()}>
       <div id="statusContainer">
         <span id="connectionStatusDot" style={setStyle()}></span>
         <label id="conLable" htmlFor="connection">
@@ -51,7 +61,9 @@ export default function Connection(props: Props) {
         placeholder="Enter a chat code"
         value={props.chatCode}
       ></input>
-      <button id="connectionBTN">Connect</button>
+      <button id="connectionBTN" onClick={connect}>
+        Connect
+      </button>
     </form>
   );
 }
