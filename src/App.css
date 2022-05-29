@@ -9,7 +9,7 @@
   --messageColor: hsl(0, 0%, 100%, var(--textTr));
   --stampColor: hsl(0, 0%, 100%, 0.3);
   --btnColor: hsl(0, 0%, 100%, 0.2);
-  --cp-MainBKG: hsl(280, 28%, 14%); /*  hsl(218, 28%, 14%);   */
+  --cp-MainBKG: hsl(220, 28%, 14%);
 }
 
 * {
