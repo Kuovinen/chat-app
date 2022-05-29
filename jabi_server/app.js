@@ -15,7 +15,6 @@ wss.on("connection", function (ws) {
 
   ws.on("message", function (message) {
     const formattedMessage = JSON.parse(message.toString());
-    console.log(formattedMessage);
     //if GETCODE generate and add empty chatlog and send it's code back
     if (formattedMessage.action === "getCode") {
       console.log("received: GETCODE", formattedMessage);
@@ -37,13 +36,21 @@ wss.on("connection", function (ws) {
       } catch (err) {
         console.error(err);
       }
-      console.log(getParsedData());
       ws.send(JSON.stringify({ action: "code", payload: code }));
-    } else if (formattedMessage.action === "getChatUpdate") {
+    }
+    //if GETCHATUPDATE parse chatlog, search for code, send back messages
+    else if (formattedMessage.action === "getChatUpdate") {
+      console.log("received: UPDATECHAT", formattedMessage);
       //get data from chatlog file
       const parsedData = getParsedData();
-      console.log("received: UPDATECHAT", formattedMessage);
-      ws.send(JSON.stringify({ action: "update", payload: parsedData[0] }));
+
+      //find the chatlog who's code coincides with payload of front message
+      const desiredLog = parsedData.filter(
+        (element) => element.code === formattedMessage.payload
+      );
+      const messages = JSON.stringify(desiredLog[0].messages);
+      //send chatlog contents
+      ws.send(JSON.stringify({ action: "update", payload: messages }));
     } else if (formattedMessage.action === "addMessage") {
       console.log(formattedMessage.payload);
     }
