@@ -46,13 +46,15 @@ export default function App() {
   const [webSocket, setWebSocket] = React.useState<undefined | WebSocket>(
     undefined
   );
+  const [conStatusTxt, setConStatusTxt] =
+    React.useState<string>("Not connected");
 
   // chatlog message elements based on the database
   // array ommiting deleted messages
   // owner should be chosen by aslias name
   function updateChatlog(array: messageData[]) {
+    setConStatusTxt("Connected to:");
     if (array.length > 0) {
-      console.log("got here");
       const filteredHistory = array.filter((element) => !element.deleted);
       const history: JSX.Element[] = filteredHistory.map((element) => {
         return (
@@ -163,7 +165,11 @@ export default function App() {
       <div className="talk">
         {/*TOP SECTION OF CHAT*/}
         <section className="contact">
-          <Connection chatCode={chatCode} webSocket={webSocket} />
+          <Connection
+            chatCode={chatCode}
+            webSocket={webSocket}
+            conStatusTxt={conStatusTxt}
+          />
           <User2Status />
         </section>
         {/*CHAT ITSELF*/}

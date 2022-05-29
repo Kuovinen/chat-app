@@ -4,6 +4,7 @@ import TypingText from "./TypingText";
 interface Props {
   chatCode: string;
   webSocket: undefined | WebSocket;
+  conStatusTxt: string;
 }
 
 export default function Connection(props: Props) {
@@ -53,7 +54,7 @@ export default function Connection(props: Props) {
       <div id="statusContainer">
         <span id="connectionStatusDot" style={setStyle()}></span>
         <label id="conLable" htmlFor="connection">
-          {"Not connected"}
+          {props.conStatusTxt}
         </label>
       </div>
       <input
