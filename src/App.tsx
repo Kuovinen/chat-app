@@ -170,6 +170,7 @@ export default function App() {
         <section className="contact">
           <Connection
             chatCode={chatCode}
+            setChatCode={setChatCode}
             webSocket={webSocket}
             conStatusTxt={conStatusTxt}
           />
