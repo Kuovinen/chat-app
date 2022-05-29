@@ -3,6 +3,7 @@ import "./Connection.css";
 import TypingText from "./TypingText";
 interface Props {
   chatCode: string;
+  setChatCode: React.Dispatch<React.SetStateAction<string>>;
   webSocket: undefined | WebSocket;
   conStatusTxt: string;
 }
@@ -10,6 +11,12 @@ interface Props {
 export default function Connection(props: Props) {
   console.log("RENDERED CONNECTION");
   const [tik, setTik] = React.useState<boolean>(true);
+  const [input, setInput] = React.useState<string>("");
+  React.useEffect(assignInput, [props.chatCode]);
+  function assignInput() {
+    setInput(props.chatCode);
+  }
+
   function setStyle() {
     let style = {};
     if (props.webSocket) {
@@ -30,6 +37,9 @@ export default function Connection(props: Props) {
     }
     return style;
   }
+  function writeText(event: React.FormEvent<HTMLInputElement>) {
+    setInput((event.target as HTMLInputElement).value);
+  }
   //interval that checks connection status every 3 seconds
   let intervalID: NodeJS.Timeout;
   React.useEffect(() => {
@@ -42,9 +52,10 @@ export default function Connection(props: Props) {
   }, []);
 
   function connect(): void {
+    props.setChatCode(input);
     if (props.webSocket) {
       props.webSocket.send(
-        JSON.stringify({ action: "getChatUpdate", payload: props.chatCode })
+        JSON.stringify({ action: "getChatUpdate", payload: input })
       );
     }
   }
@@ -60,7 +71,8 @@ export default function Connection(props: Props) {
       <input
         id="chatCode"
         placeholder="Enter a chat code"
-        value={props.chatCode}
+        value={input}
+        onChange={writeText}
       ></input>
       <button id="connectionBTN" onClick={connect}>
         Connect
