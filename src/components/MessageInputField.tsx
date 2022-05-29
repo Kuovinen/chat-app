@@ -46,8 +46,9 @@ export default function Input(props: inputProps) {
     const minutesString = minutes.toString();
     const day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
     const dayString = day.toString();
+    //months start with 0, so +1
     const month =
-      date.getMonth() < 10 ? "0" + date.getMonth() : date.getMonth();
+      date.getMonth() < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
     const monthString = month.toString();
     const year = date.getFullYear();
     const yearString = year.toString();
