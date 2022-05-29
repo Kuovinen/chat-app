@@ -4,28 +4,48 @@ const fs = require("fs");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 
-//console.log(parsedData[0]);
-console.log(uuidv4());
+function getParsedData() {
+  const data = fs.readFileSync(path.resolve(__dirname, "./messageData.json"));
+  const parsedData = JSON.parse(data);
+  return parsedData;
+}
+
 wss.on("connection", function (ws) {
   console.log("new client connected");
-  //send a message back at client
 
-  //check if recieved message containt a 'get' link command and give one if so
   ws.on("message", function (message) {
     const formattedMessage = JSON.parse(message.toString());
     console.log(formattedMessage);
+    //if GETCODE generate and add empty chatlog and send it's code back
     if (formattedMessage.action === "getCode") {
       console.log("received: GETCODE", formattedMessage);
-      ws.send(JSON.stringify({ action: "code", payload: uuidv4() }));
-    }
-    if (formattedMessage === "getChat") {
+      const code = uuidv4();
+      const emptyChatLog = {
+        code: code,
+        messages: [],
+      };
+      const parsedData = getParsedData();
+      const parsedDataUpdate = [...parsedData, emptyChatLog];
+      const dataString = JSON.stringify(parsedDataUpdate);
+
+      try {
+        fs.writeFileSync(
+          path.resolve(__dirname, "./messageData.json"),
+          dataString
+        );
+        // file written successfully
+      } catch (err) {
+        console.error(err);
+      }
+      console.log(getParsedData());
+      ws.send(JSON.stringify({ action: "code", payload: code }));
+    } else if (formattedMessage.action === "getChatUpdate") {
       //get data from chatlog file
-      const data = fs.readFileSync(
-        path.resolve(__dirname, "./messageData.json")
-      );
-      const parsedData = JSON.parse(data);
+      const parsedData = getParsedData();
       console.log("received: UPDATECHAT", formattedMessage);
       ws.send(JSON.stringify({ action: "update", payload: parsedData[0] }));
+    } else if (formattedMessage.action === "addMessage") {
+      console.log(formattedMessage.payload);
     }
   });
 });
