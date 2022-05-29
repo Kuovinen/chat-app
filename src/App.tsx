@@ -46,31 +46,33 @@ export default function App() {
   const [webSocket, setWebSocket] = React.useState<undefined | WebSocket>(
     undefined
   );
-  const [conStatus, setConStatus] = React.useState<number>(3);
 
   // chatlog message elements based on the database
   // array ommiting deleted messages
   // owner should be chosen by aslias name
   function updateChatlog(array: messageData[]) {
-    const filteredHistory = array.filter((element) => !element.deleted);
-    const history: JSX.Element[] = filteredHistory.map((element) => {
-      return (
-        <MessageHstr
-          key={element.id}
-          owner={element.owner === "user1" ? "user1" : "user2"}
-          txt={element.txt}
-          id={element.id}
-          hours={element.hours}
-          minutes={element.minutes}
-          date={element.date}
-          month={element.month}
-          year={element.year}
-          edited={element.edited}
-          attachment={element.attachment}
-        />
-      );
-    });
-    setChat(history);
+    if (array.length > 0) {
+      console.log("got here");
+      const filteredHistory = array.filter((element) => !element.deleted);
+      const history: JSX.Element[] = filteredHistory.map((element) => {
+        return (
+          <MessageHstr
+            key={element.id}
+            owner={element.owner === "user1" ? "user1" : "user2"}
+            txt={element.txt}
+            id={element.id}
+            hours={element.hours}
+            minutes={element.minutes}
+            date={element.date}
+            month={element.month}
+            year={element.year}
+            edited={element.edited}
+            attachment={element.attachment}
+          />
+        );
+      });
+      setChat(history);
+    }
   }
   console.log(lastMessageObject);
   //initial api connection set up with useEffect
@@ -81,25 +83,32 @@ export default function App() {
   //connect to api when program webpage opend
   React.useEffect(callApi, []);
   //if code changes automatically send updateChat request to api
-  React.useEffect(getChatLog, [chatCode]);
-  //update connection status
-  function updateConnection() {
+  React.useEffect(codeConnect, [chatCode]);
+  //if last message changes it to API
+  React.useEffect(sendChatUpdate, [lastMessageObject]);
+
+  function sendChatUpdate() {
     if (webSocket) {
-      setConStatus(webSocket.readyState);
+      webSocket.send(
+        JSON.stringify({
+          action: "addMessage",
+          payload: JSON.stringify(lastMessageObject),
+        })
+      );
     }
   }
-
-  React.useEffect(updateConnection, []);
 
   function getChatCode() {
     console.log("clicked get code button");
     if (webSocket) {
-      webSocket.send(JSON.stringify({ action: "getCode", payload: "test1" }));
+      webSocket.send(JSON.stringify({ action: "getCode", payload: "" }));
     }
   }
-  function getChatLog() {
+  function codeConnect() {
     if (webSocket) {
-      webSocket.send(JSON.stringify({ action: "getChat", payload: "test1" }));
+      webSocket.send(
+        JSON.stringify({ action: "getChatUpdate", payload: chatCode })
+      );
     }
   }
 
@@ -115,7 +124,7 @@ export default function App() {
       }
       //objects that have URL are chatlog instance identifiers used for connecting
       else if (parsedData.action === "update") {
-        updateChatlog(parsedData.messages);
+        updateChatlog(JSON.parse(parsedData.payload));
         console.log("api sent UPDATE");
       }
     }
