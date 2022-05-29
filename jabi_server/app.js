@@ -26,7 +26,7 @@ wss.on("connection", function (ws) {
       const parsedData = getParsedData();
       const parsedDataUpdate = [...parsedData, emptyChatLog];
       const dataString = JSON.stringify(parsedDataUpdate);
-
+      console.log("created", dataString);
       try {
         fs.writeFileSync(
           path.resolve(__dirname, "./messageData.json"),
@@ -52,7 +52,42 @@ wss.on("connection", function (ws) {
       //send chatlog contents
       ws.send(JSON.stringify({ action: "update", payload: messages }));
     } else if (formattedMessage.action === "addMessage") {
-      console.log(formattedMessage.payload);
+      console.log("received: ADDMESSAGE", formattedMessage);
+      //get data from chatlog file
+      const parsedData = getParsedData();
+      const formatedPayload = JSON.parse(formattedMessage.payload);
+      //find the chatlog who's code coincides with payload of front message
+      const desiredLog = parsedData.filter(
+        (element) => element.code === formatedPayload.code
+      )[0];
+      console.log(`formated PAYLOAD:`, formatedPayload);
+      console.log("desired LOG:", desiredLog);
+      //add message to desiredLogs messages
+      const newMessagesArray = [
+        ...desiredLog.messages,
+        formatedPayload.message,
+      ];
+      //assign updates messages array to chatlog
+      const desiredLogUpdated = {
+        ...desiredLog,
+        messages: newMessagesArray,
+      };
+
+      const otherLogs = parsedData.filter(
+        (element) => element.code !== formatedPayload.code
+      );
+      const updatedChatlogList = [desiredLogUpdated, ...otherLogs];
+      console.log(updatedChatlogList);
+      const finalArray = JSON.stringify(updatedChatlogList);
+      try {
+        fs.writeFileSync(
+          path.resolve(__dirname, "./messageData.json"),
+          finalArray
+        );
+        // file written successfully
+      } catch (err) {
+        console.error(err);
+      }
     }
   });
 });
